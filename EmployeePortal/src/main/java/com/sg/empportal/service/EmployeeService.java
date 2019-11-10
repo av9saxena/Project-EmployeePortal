@@ -1,13 +1,12 @@
 package com.sg.empportal.service;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import com.sg.empportal.entity.Employee;
 import com.sg.empportal.exception.EPortalException;
@@ -35,11 +34,11 @@ public class EmployeeService {
 
 		boolean isOk = true;
 
-		if (StringUtils.isEmpty(employee.getFirstname().trim()) 
-				|| StringUtils.isEmpty(employee.getLastname().trim()) 
-				|| StringUtils.isEmpty(employee.getGender().trim()) 
+		if (StringUtils.isBlank(employee.getFirstname()) 
+				|| StringUtils.isBlank(employee.getLastname()) 
+				|| StringUtils.isBlank(employee.getGender()) 
 				|| employee.getDob() == null
-				|| StringUtils.isEmpty(employee.getDepartment().trim())) {
+				|| StringUtils.isBlank(employee.getDepartment())) {
 			isOk = false;
 		}
 
