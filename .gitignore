@@ -33,3 +33,6 @@ out/
 
 ### bin files ###
 /EmployeePortal/bin/
+
+### nodeModules ###
+/emp-portal/node_modules

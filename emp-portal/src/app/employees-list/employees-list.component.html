@@ -1,0 +1,30 @@
+<div class="employee-list-page">
+    <div class="panel">
+        <button type="button" [routerLink]="['/']">Go Back</button>
+    </div>
+    <div class=list-enclosure>
+        <p *ngIf="!isSuccessful">{{employeeData}}</p>
+        <table class="emp-list" *ngIf="isSuccessful">
+            <thead>
+                <tr>
+                    <td>EmployeeId</td>
+                    <td>FirstName</td>
+                    <td>LastName</td>
+                    <td>Gender</td>
+                    <td>Date of Birth</td>
+                    <td>Department</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of employeeData">
+                    <td>{{data.EmployeeId}}</td>
+                    <td>{{data.FirstName}}</td>
+                    <td>{{data.LastName}}</td>
+                    <td>{{data.Gender}}</td>
+                    <td>{{data.DateOfBirth}}</td>
+                    <td>{{data.Department}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
