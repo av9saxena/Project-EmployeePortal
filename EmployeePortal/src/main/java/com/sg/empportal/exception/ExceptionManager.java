@@ -1,5 +1,6 @@
 package com.sg.empportal.exception;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -33,7 +34,7 @@ public class ExceptionManager {
 
 		errorResponse.setData(null);
 		errorResponse.setHttpCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-		errorResponse.setMessage(e.getMessage());
+		errorResponse.setMessage(ExceptionUtils.getStackTrace(e));
 		errorResponse.setStatus(Constants.FAILURE.value());
 
 		ResponseEntity<RestApiHeader<String>> response = new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
