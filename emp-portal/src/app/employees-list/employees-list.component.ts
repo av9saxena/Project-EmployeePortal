@@ -10,23 +10,23 @@ export class EmployeesListComponent implements OnInit {
 
   constructor(private service: EmployeeService) { }
 
+  isSucessful: any;
+  employeeData: any;
+
   ngOnInit() {
 
     this.service.listAllEmployees().then((res) => {
 
-      let isSucessful;
-      let employeeData;
-
-      if(res.status == null){
-        isSucessful = false;
-        employeeData = "Could not contact server.";
-      } else if(res.status == "Failure"){
-        isSucessful = false;
-        employeeData = res.message;
+      if(res.status == "Failure"){
+        this.isSucessful = false;
+        this.employeeData = res.message;
       } else {
-        isSucessful = true;
-        employeeData = res.data;
+        this.isSucessful = true;
+        this.employeeData = res.data;
       }
+    }).catch((err) => {
+      this.isSucessful = false;
+      this.employeeData = "Could not contact backend server. Please check if backend server is running";
     });
   }
 }

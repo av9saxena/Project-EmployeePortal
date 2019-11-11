@@ -23,8 +23,8 @@ export class EmployeeService{
 
         let httpHeaders = new HttpHeaders();
 
-        httpHeaders.append("Content-Type", "application/json; charset=utf-8");
-        httpHeaders.append("Accept", "application/json; charset=utf-8");
+        httpHeaders.set("Content-Type", "application/json; charset=utf-8");
+        httpHeaders.set("Accept", "application/json; charset=utf-8");
 
         return httpHeaders;
     }
