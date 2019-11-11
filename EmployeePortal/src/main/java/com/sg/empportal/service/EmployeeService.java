@@ -1,5 +1,6 @@
 package com.sg.empportal.service;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import com.sg.empportal.entity.Employee;
 import com.sg.empportal.exception.EPortalException;
@@ -50,6 +52,10 @@ public class EmployeeService {
 	public List<Employee> getAllEmployees(){
 		
 		List<Employee> employeeList = employeeRepository.findAll(Sort.by("firstname"));
+		
+		if(CollectionUtils.isEmpty(employeeList)) {
+			throw new EPortalException(ErrorCodesMessages.EP_0002.toString(), ErrorCodesMessages.EP_0002.getErrorMessage());
+		}
 		
 		return employeeList;
 	}
