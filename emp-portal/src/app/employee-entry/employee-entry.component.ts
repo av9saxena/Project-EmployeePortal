@@ -13,14 +13,13 @@ export class EmployeeEntryComponent implements OnInit {
   ngOnInit() {
   }
 
-  isSuccessful: any;
   employeeData: any;
 
-  public saveEmployeeData(firstName:any, lastname:any, gender:any, dob: any, department:any): void{
+  public saveEmployeeData(firstName:any, lastName:any, gender:any, dob: any, department:any): void{
     
     let request = {
       "FirstName": firstName,
-      "LastName": lastname,
+      "LastName": lastName,
       "Gender": gender,
       "DateOfBirth": dob,
       "Department": department
@@ -29,15 +28,14 @@ export class EmployeeEntryComponent implements OnInit {
     this.service.saveNewEmployee(request).then((res) => {
 
       if(res.status == "Success"){
-        this.isSuccessful = true;
-        this.employeeData = "Employee created successfully. EmployeeID is : " + res.data.EmployeeID;
-      } else {
-        this.isSuccessful = false;
-        this.employeeData = res.message;
-      }
+        this.employeeData = "Employee created successfully. EmployeeId is : " + res.data.EmployeeId;
+      } 
     }).catch((err) => {
-      this.isSuccessful = false;
-      this.employeeData = "Could not contact backend server. Please check if backend server is running";
+      if(err.message == "Http failure response for http://localhost:8085/api/employee/save: 0 Unknown Error"){
+        this.employeeData = "Could not contact backend server. Please check if backend server is running";
+      } else {
+        this.employeeData = err.error.message;
+      }
     });
   }
 }

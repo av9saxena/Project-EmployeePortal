@@ -1,16 +1,8 @@
-<div>
-  <div class="header">
-    <b class="header-title">EMPLOYEE PORTAL</b>
-  </div>
-  <div class="main-screen">
-    <nav>
-        <div class="button-empentry">
-          <button class="empEntry" [routerLink]="['/newEntry']">Employee Entry</button>
-        </div>
-        <div class="button-emplist">
-          <button class="empList"[routerLink]="['/listEmployees']">Employee List</button>
-        </div>
-      </nav>
-  </div>
+<div class="wrapper">
+  <header role="banner">
+      <h1>Employee Portal</h1>
+  </header>
 </div>
-<router-outlet></router-outlet>
+<div>
+  <router-outlet></router-outlet>
+</div>

@@ -1,20 +1,24 @@
 <div class="employee-list-page">
     <div class="panel">
-        <button type="button" [routerLink]="['/']">Go Back</button>
+        <button type="button" [routerLink]="['/']">Home</button>
     </div>
-    <div class=list-enclosure>
-        <p *ngIf="!isSuccessful">{{employeeData}}</p>
-        <table class="emp-list" *ngIf="isSuccessful">
+    <div class="errorPanel" *ngIf="!isSuccessful">{{errorMessage}}</div>
+    <div class="tbl-header" *ngIf="isSuccessful">
+        <table cellpadding="0" cellspacing="0" border="0">
             <thead>
-                <tr>
-                    <td>EmployeeId</td>
-                    <td>FirstName</td>
-                    <td>LastName</td>
-                    <td>Gender</td>
-                    <td>Date of Birth</td>
-                    <td>Department</td>
-                </tr>
+            <tr>
+                <th>EmployeeId</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Gender</th>
+                <th>Date Of Birth</th>
+                <th>Department</th>
+            </tr>
             </thead>
+        </table>
+    </div>
+    <div class="tbl-content" *ngIf="isSuccessful">
+        <table cellpadding="0" cellspacing="0" border="0">
             <tbody>
                 <tr *ngFor="let data of employeeData">
                     <td>{{data.EmployeeId}}</td>

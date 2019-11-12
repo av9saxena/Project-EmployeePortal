@@ -12,20 +12,25 @@ export class EmployeeService{
 
     saveNewEmployee(data: any): Promise<any>{
         data = JSON.stringify(data);
-        return this.httpClient.post(this.saveUrl, data, {headers: this.getHeaders()}).toPromise();
+        let headers = this.getHeaders();
+        return this.httpClient.post(this.saveUrl, data,  headers).toPromise();
     }
 
     listAllEmployees(): Promise<any>{
-        return this.httpClient.get(this.listUrl, {headers: this.getHeaders()}).toPromise();
+        let headers = this.getHeaders();
+        return this.httpClient.get(this.listUrl, headers).toPromise();
     }
 
-    getHeaders(): HttpHeaders{
+    getHeaders(): any{
 
-        let httpHeaders = new HttpHeaders();
+        let httpHeaders = new HttpHeaders({'Content-Type': 'application/json', 
+                                            'Accept': 'application/json; charset=utf-8',
+                                            'Access-Control-Allow-Origin': 'http://localhost:8085'});
 
-        httpHeaders.set("Content-Type", "application/json; charset=utf-8");
-        httpHeaders.set("Accept", "application/json; charset=utf-8");
+        let httpOptions = {
+           headers: httpHeaders
+        };
 
-        return httpHeaders;
+        return httpOptions;
     }
 }

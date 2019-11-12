@@ -36,3 +36,4 @@ out/
 
 ### nodeModules ###
 /emp-portal/node_modules
+/emp-portal/dist
