@@ -16,6 +16,7 @@ h1{
    text-align: center;
    text-decoration: none;
    transition: color .25s;
+   margin: 0;
 }
 
 body {
